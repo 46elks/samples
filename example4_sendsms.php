@@ -19,8 +19,13 @@ function sendSMS ($sms) {
       'timeout' => 10
   )));
 
-  return false !== file_get_contents(
+  $response = file_get_contents(
     'https://api.46elks.com/a1/SMS', false, $context );
+
+  if (!strstr($http_response_header[0],"200 OK"))
+    return $http_response_header[0];
+  
+  return $response;
 }
 
 
@@ -29,6 +34,6 @@ $sms = array(
   'to' => '+46709751949',  /* The mobile number you want to send to */
   'message' => 'Hello hello!'
 );
-sendSMS ($sms);
+echo sendSMS ($sms) . "\n";
 
 ?>
