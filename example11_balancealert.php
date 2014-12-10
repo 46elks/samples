@@ -19,7 +19,7 @@ function checkBalance() {
   )));
 
   $response = file_get_contents(
-    'https://api.46elks.com/a1/users/me', false, $context );
+    'https://api.46elks.com/a1/Me', false, $context );
 
   if (!strstr($http_response_header[0],"200 OK"))
     return $http_response_header[0];
