@@ -30,7 +30,7 @@ function checkBalance() {
 // Settings
 // Email to send notification to:
 $to = "yurmail@domain.com";
-// Limit for sendning allert message:
+// Limit for sendning alert message:
 $limit = 1000;
 
 // Check balance
@@ -41,7 +41,7 @@ $balance = $accountdata->balance/10000;
 
 // Check if below limit.
 if ($balance < $limit){
-	// Send notification e-mail, you could allso send a reminder SMS, see example4_sendsms.php.
+	// Send notification e-mail, you could also send a reminder SMS, see example4_sendsms.php.
 	print mail (
 	$to, 
 	"46elks account Balance low" , 
