@@ -8,45 +8,79 @@
 $username = '';
 $password = '';
 
+// Get the inital SMS list:
 $response = file_get_contents('https://'.$username.':'.$password.'@api.46elks.com/a1/SMS');
 
+// Check that the request was ok:
 if (!strstr($http_response_header[0],"200 OK"))
     die($http_response_header[0]);
 
+// Decode request:
 $decodedlist = json_decode($response);
 $list = $decodedlist->data;
 
+// Prepare arrays for output:
+$costmonth = array();
+$numbermonth = array();
+
+// Loop until all SMS are receaved or max 100 000 messages.
+$max = 1000;
 while(true){
-	if(isset($decodedlist->next)){
+
+	if(isset($decodedlist->next) == FALSE)
+	{
+	
+		if($max < 0)
+		{
+			break;
+		}
+		
+		$max = $max - 1;
 		$response = file_get_contents('https://'.$username.':'.$password.'@api.46elks.com/a1/SMS?start='.$decodedlist->next);
 		if (!strstr($http_response_header[0],"200 OK"))
     		die($http_response_header[0]);
 		$decodedlist = json_decode($response);
 		$list = array_merge($list, $decodedlist->data);
 	}
-	else{
+	
+	else
+	{
 		break;
 	}
 }
 
-$costmonth = array();
-$numbermonth = array();
-
-foreach($list as $sms){
-	if(isset($sms->cost)){
-		$month = substr($sms->created,0,7);
+// Read all items.
+foreach($list as $sms)
+{
+	if(isset($sms->cost))
+	{
+		$month = substr($sms->created, 0, 7);
+		$numstart = substr($sms->to, 0, 4);
+		
 		if(isset($costmounth[$month]) == FALSE)
 			$costmounth[$month] = 0;
 		$costmonth[$month] = $costmonth[$month] + $sms->cost;
-		$numbermonth[$month] = $numbermonth[$month] + 1;
+		
+		if(isset($numbermonth[$month]) == FALSE)
+			$numbermonth[$month] = array();
+		if(isset($numbermonth[$month][$numstart]) == FALSE)
+			$numbermonth[$month][$numstart] = 0;
+		$numbermonth[$month][$numstart] = $numbermonth[$month][$numstart] + 1;
 	}
 }
 
-print "Month\tCost\tCount\n";
-foreach($costmonth as $month => $cost){
+// Print the data to the user:
+print "Month\tCost\tNumber\tAmount\n";
+foreach($costmonth as $month => $cost)
+{
 	$cost = $cost/10000;
-	print $month."\t".$cost."\t". $numbermonth[$month]."\n";
+	print $month."\t".$cost."\n";
+	foreach($numbermonth[$month] as $number => $amount )
+	{
+		print "\t\t". $number."*\t".$amount."\n";
+	}
 }
+
 
 ?>
 
