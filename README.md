@@ -7,4 +7,4 @@ With the 46elks API you can do things such as send and receive SMS messages, con
 
 Read more over at [www.46elks.com/docs](http://www.46elks.com/docs)
 
-This source is released as public domain. Use freely.
+This source code is released as public domain. Use freely.
