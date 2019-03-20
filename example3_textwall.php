@@ -38,7 +38,7 @@ $lines = array_reverse( $lines );
 
 
 ///////////////////////////////////////
-// Map phone numbers to people names //
+// Map phone numbers to names //
 ///////////////////////////////////////
 $peoplenames = array(
   '+46704508449' => 'Johannes L',
