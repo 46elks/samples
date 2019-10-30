@@ -1,4 +1,4 @@
-<?
+<?php
 // Initiate an outgoing call, and play a message to the remote party.
 //
 // 1. Change 46elks API username & password
