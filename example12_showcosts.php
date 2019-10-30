@@ -1,4 +1,4 @@
-<?
+<?php
 // Example to get cost history from the 46elks service
 // Change $username, $password and the mobile number to send to
 
