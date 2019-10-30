@@ -1,4 +1,4 @@
-<?
+<?php
 // SMS text wall - Sample for the 46elks cloud telephony platform
 //
 // Need a way for customers to compliment the kitchen?
@@ -66,7 +66,7 @@ p {
 
   <h1>SMS wall for +46766861354</h1>
 
-  <?
+  <?php
     foreach (array_slice($lines, 0, 20) as $line):
       list ($from, $text) = explode(' ', $line);
       $message = htmlspecialchars( base64_decode($text) );
@@ -79,7 +79,7 @@ p {
 
     <p><?=$message?> <em><?=$from?></em></p>
 
-  <?
+  <?php
     endforeach;
   ?>
 
