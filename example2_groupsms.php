@@ -1,4 +1,4 @@
-<?
+<?php
 // "Roll your own" SMS group messaging on the 46elks platform
 // 
 // Allocated one or two numbers using the /Numbers REST resource, and update
