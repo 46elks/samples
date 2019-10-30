@@ -1,4 +1,4 @@
-<?
+<?php
 // Example to send SMS using the 46elks service
 // Change $username, $password and print_r() to some more useful code
 
