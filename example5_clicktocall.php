@@ -1,4 +1,4 @@
-<?
+<?php
 // DIY Click-To-Call using the 46elks platform
 
 function newCall ($call) {
@@ -36,7 +36,7 @@ $call = array(
 <html>
   <body style="font-family: Verdana; max-width: 380px;">
 
-  <? if(!$_POST['mobilenumber']): ?>
+  <?php if(!$_POST['mobilenumber']): ?>
 
     <h2>Click-To-Call example</h2>
     <p>
@@ -48,12 +48,12 @@ $call = array(
       </form>
     </p>
 
-  <? else: ?>
+  <?php else: ?>
 
     <h1>Initiating call.. Answer your phone.</h1>
     <? newCall ($call); ?>
 
-  <? endif; ?>
+  <?php endif; ?>
 
   </body>
 </html>
