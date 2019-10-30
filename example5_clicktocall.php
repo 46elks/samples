@@ -1,4 +1,4 @@
-<?
+<?php
 // DIY Click-To-Call using the 46elks platform
 
 function newCall ($call) {
